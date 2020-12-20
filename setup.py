@@ -24,9 +24,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-    "requests>=2.23.0"
-    ],
-    install_requires = [
-  'company_identification @ git+https://github.com/jackbartley8/company_identification@master#egg=package-0.1',
-]
+    "requests>=2.23.0",
+    "company_identification @ git+https://github.com/jackbartley8/company_identification@master#egg=package-0.1"
+    ]
 )
