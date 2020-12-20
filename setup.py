@@ -23,6 +23,6 @@ setup(
         open(os.path.join(ROOT, 'README.rst')).read()),
     include_package_data=True,
     zip_safe=False,
-    #install_requires=[
-
-    #],
+    install_requires=[
+    "requests>=2.23.0"
+    ]
