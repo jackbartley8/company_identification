@@ -12,8 +12,8 @@ setup(
     name='company_identification',
     version='0.1',
     author='Jack Bartley',
-    packages=[
-        'company_identification'],
+    #packages=[
+        #'company_identification'],
     url='https://github.com/jackbartley8/company_identification',
     description=(
         "jacks use only"
