@@ -1,0 +1,2 @@
+include MANIFEST.in
+include comp_id_both.py
