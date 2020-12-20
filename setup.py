@@ -26,3 +26,4 @@ setup(
     install_requires=[
     "requests>=2.23.0"
     ]
+)
