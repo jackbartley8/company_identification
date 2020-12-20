@@ -25,5 +25,6 @@ setup(
     zip_safe=False,
     install_requires=[
     "requests>=2.23.0"
-    ]
+    ],
+    dependency_links=['http://github.com/jackbartley8/company_identification/master#egg=package-0.1']
 )
