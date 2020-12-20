@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 import os
 # import sys
@@ -12,8 +12,7 @@ setup(
     name='company_identification',
     version='0.1',
     author='Jack Bartley',
-    #packages=[
-        #'company_identification'],
+    packages=find_packages(),
     url='https://github.com/jackbartley8/company_identification',
     description=(
         "jacks use only"
@@ -24,7 +23,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-    "requests>=2.23.0",
-    "company_identification @ git+https://github.com/jackbartley8/company_identification@main"
+    "requests>=2.23.0"
     ]
 )
