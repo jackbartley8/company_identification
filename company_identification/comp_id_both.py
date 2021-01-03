@@ -254,6 +254,8 @@ class MsgCompID:
             # body = psoup.find('div', {'class': 'bw-release-story'})
             # print(body.text)
             # print(formatted)
+            except AttributeError as e:
+                return False#oftentimes, cic will not exist, causing an attribute error. I think this is ok
             except Exception as e:
                 traceback.print_tb(e.__traceback__)
                 print(e)
