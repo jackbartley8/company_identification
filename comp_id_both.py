@@ -183,6 +183,10 @@ class MsgCompID:
             # body = psoup.find('div', {'class': 'bw-release-story'})
             # print(body.text)
             # print(formatted)
+            except AttributeError as e:
+                traceback.print_tb(e.__trackeback__)
+                print(e)
+                print(psoup2)
             except Exception as e:
                 traceback.print_tb(e.__traceback__)
                 print(e)
