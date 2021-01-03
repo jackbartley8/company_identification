@@ -184,9 +184,7 @@ class MsgCompID:
             # print(body.text)
             # print(formatted)
             except AttributeError as e:
-                traceback.print_tb(e.__trackeback__)
-                print(e)
-                print(psoup2)
+                return False#oftentimes, cic will not exist, causing an attribute error. I think this is ok
             except Exception as e:
                 traceback.print_tb(e.__traceback__)
                 print(e)
