@@ -68,11 +68,14 @@ def base_prnw(page_data):
     # print(body)
     formatted = re.split('[^a-zA-Z]', source.lower())[0]
     # print(formatted)
-    stonk = re.search('[(][a-zA-Z \-]*:[A-Z0-9. ]*[)]', body).group()
-    # print(stonk)
-    theticker = stonk.split(':', 1)[1].split(')')[0].strip()
-    # print(theticker)
-    return formatted, theticker, body
+    stonk_1 = re.search('[(][a-zA-Z \-]*:[A-Z0-9. ]*[)]', body)
+    if stonk_1:
+        stonk_2 = stonk_1.group()
+        # print(stonk)
+        theticker = stonk_2.split(':', 1)[1].split(')')[0].strip()
+        # print(theticker)
+        return formatted, theticker, body
+    return formatted, False, body
 
 class MsgCompID:
     def __init__(self, site_id, url, is_async):
@@ -135,18 +138,24 @@ class MsgCompID:
                 else:
                     return mktwatch
             # return False
+            except AttributeError as e:
+                return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
             except:
                 # print('no company yo')
                 return False
         elif self.site_id == 2:
             try:
                 formatted, theticker, body = base_prnw(page_data)
+                if not theticker:
+                    return False
                 mktwatch = await self.async_mktwatch_comp(formatted, theticker)
                 theticker2 = await self.async_find_all_consecutive_tickers(body)
                 if mktwatch in theticker2:
                     return theticker2
                 else:
                     return mktwatch
+            except AttributeError as e:
+                return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
             except Exception as e:
                 traceback.print_tb(e.__traceback__)
                 print(e)
@@ -206,18 +215,24 @@ class MsgCompID:
                 else:
                     return mktwatch
             # return False
+            except AttributeError as e:
+                return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
             except:
                 # print('no company yo')
                 return False
         elif self.site_id == 2:
             try:
                 formatted, theticker, body = base_prnw(page_data)
+                if not theticker:
+                    return False
                 mktwatch = self.sync_mktwatch_comp(formatted, theticker)
                 theticker2 = self.sync_find_all_consecutive_tickers(body)
                 if mktwatch in theticker2:
                     return theticker2
                 else:
                     return mktwatch
+            except AttributeError as e:
+                return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
             except Exception as e:
                 traceback.print_tb(e.__traceback__)
                 print(e)
