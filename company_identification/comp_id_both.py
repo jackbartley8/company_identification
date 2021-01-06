@@ -6,7 +6,7 @@ import re, string
 from datetime import datetime
 import aiohttp
 import traceback
-
+#test
 def base_yahoo_comp(comp_name_fmtd, expected_ticker, dajson):
     # print(dajson)
     try:
