@@ -136,6 +136,11 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = await self.async_yahoo_comp(formatted, the2ticker)
+                    theticker2 = await self.async_find_all_consecutive_tickers(psoup.find('span', {'class':
+                                                                                             'article-body'}).text)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             # return False
             except AttributeError as e:
@@ -153,6 +158,11 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = await self.async_yahoo_comp(formatted, the2ticker)
+                    theticker2 = await self.async_find_all_consecutive_tickers(psoup.find('span', {'class':
+                                                                                             'article-body'}).text)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             except AttributeError as e:
                 return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
@@ -186,6 +196,11 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = await self.async_yahoo_comp(formatted, the2ticker)
+                    theticker2 = await self.async_find_all_consecutive_tickers(psoup.find('span', {'class':
+                                                                                             'article-body'}).text)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             # return theticker
             # interm = source.split(": ",1)[1].split(")",1)[0]
@@ -213,6 +228,11 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = self.sync_yahoo_comp(formatted, the2ticker)
+                    theticker2 = self.sync_find_all_consecutive_tickers(psoup.find('span', {'class':
+                                                                                             'article-body'}).text)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             # return False
             except AttributeError as e:
@@ -230,6 +250,10 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = self.sync_yahoo_comp(formatted, theticker)
+                    theticker2 = self.sync_find_all_consecutive_tickers(body)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             except AttributeError as e:
                 return False#oftentimes, part of the html will not exist, causing an attribute error. I think this is ok
@@ -263,6 +287,10 @@ class MsgCompID:
                 if mktwatch in theticker2:
                     return theticker2
                 else:
+                    yahoo = self.sync_yahoo_comp(formatted, theticker)
+                    theticker2 = self.sync_find_all_consecutive_tickers(body)
+                    if yahoo in theticker2:
+                        return yahoo
                     return mktwatch
             # return theticker
             # interm = source.split(": ",1)[1].split(")",1)[0]
