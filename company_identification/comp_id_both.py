@@ -54,6 +54,7 @@ def base_gnw(page_data):
     source = psoup.find('span', {'itemprop': 'author copyrightHolder'}).text
     formatted = re.split('[^a-zA-Z]', source.lower())[0]
     body = psoup.find('span', {'class': 'article-body'}).text
+    body = body.encode('utf-8').replace(b'\xc2\xa0', b' ').decode('utf-8')  # necesarry to replace &nbsp
     stonk = re.search('[(][a-zA-Z \-]*:[A-Z0-9. ]*[)]', body).group()
     # print(stonk)
     the2ticker = stonk.split(':', 1)[1].split(')')[0].strip()
@@ -65,6 +66,7 @@ def base_prnw(page_data):
     source = psoup.find('div', {'class': 'col-lg-6 col-lg-offset-1 col-sm-5 col-sm-offset-1'}).find(
         'strong').text
     body = psoup.find('section', {'class': 'release-body container'}).text
+    body = body.encode('utf-8').replace(b'\xc2\xa0', b' ').decode('utf-8')#necesarry to replace &nbsp
     # print(body)
     formatted = re.split('[^a-zA-Z]', source.lower())[0]
     # print(formatted)
@@ -191,6 +193,7 @@ class MsgCompID:
                 # print(formatted,theticker)
                 mktwatch = await self.async_mktwatch_comp(formatted, theticker)
                 body = psoup.find('article', {'class': 'bw-release-main'}).text
+                body = body.encode('utf-8').replace(b'\xc2\xa0', b' ').decode('utf-8')#necessary to replace &nbsp
                 theticker2 = await self.async_find_all_consecutive_tickers(body)
                 if mktwatch in theticker2:
                     return theticker2
@@ -281,6 +284,7 @@ class MsgCompID:
                 # print(formatted,theticker)
                 mktwatch = self.sync_mktwatch_comp(formatted, theticker)
                 body = psoup.find('article', {'class': 'bw-release-main'}).text
+                body = body.encode('utf-8').replace(b'\xc2\xa0', b' ').decode('utf-8')  # necesarry to replace &nbsp
                 theticker2 = self.sync_find_all_consecutive_tickers(body)
                 if mktwatch in theticker2:
                     return theticker2
