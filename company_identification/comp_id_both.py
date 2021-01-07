@@ -159,8 +159,7 @@ class MsgCompID:
                     return theticker2
                 else:
                     yahoo = await self.async_yahoo_comp(formatted, theticker)
-                    theticker2 = await self.async_find_all_consecutive_tickers(psoup.find('span', {'class':
-                                                                                             'article-body'}).text)
+                    theticker2 = await self.async_find_all_consecutive_tickers(body)
                     if yahoo in theticker2:
                         return yahoo
                     return mktwatch
@@ -197,8 +196,7 @@ class MsgCompID:
                     return theticker2
                 else:
                     yahoo = await self.async_yahoo_comp(formatted, theticker)
-                    theticker2 = await self.async_find_all_consecutive_tickers(psoup.find('span', {'class':
-                                                                                             'article-body'}).text)
+                    theticker2 = await self.async_find_all_consecutive_tickers(body)
                     if yahoo in theticker2:
                         return yahoo
                     return mktwatch
